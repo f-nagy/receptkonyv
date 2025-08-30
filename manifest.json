@@ -1,0 +1,27 @@
+{
+  "name": "Receptkönyv",
+  "short_name": "Receptkönyv",
+  "description": "Egy egyszerű alkalmazás receptek tárolására és kezelésére kategóriák szerint",
+  "start_url": "/receptkonyv/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/receptkonyv/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/receptkonyv/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["food", "lifestyle", "utilities"],
+  "lang": "hu",
+  "dir": "ltr"
+}

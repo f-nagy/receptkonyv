@@ -5,6 +5,7 @@ const urlsToCache = [
   '/receptkonyv/index.html',
   '/receptkonyv/index.css',
   '/receptkonyv/index.tsx',
+  '/receptkonyv/manifest.json',
   '/receptkonyv/version.json',
   '/receptkonyv/icons/icon-192.png',
   '/receptkonyv/icons/icon-512.png',
