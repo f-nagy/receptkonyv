@@ -1,14 +1,15 @@
 // Service Worker a PWA funkcionalitáshoz
 const CACHE_NAME = 'receptkonyv-v2.3.3.0';
 const urlsToCache = [
-  '/receptkonyv/',
-  '/receptkonyv/index.html',
-  '/receptkonyv/index.css',
-  '/receptkonyv/index.tsx',
-  '/receptkonyv/manifest.json',
-  '/receptkonyv/version.json',
-  '/receptkonyv/icons/icon-192.png',
-  '/receptkonyv/icons/icon-512.png',
+  '/',
+  '/index.html',
+  '/index-demo.html',
+  '/index.css',
+  '/index.tsx',
+  '/manifest.json',
+  '/version.json',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
   'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js',
   'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.wasm'
