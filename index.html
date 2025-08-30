@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receptkönyv</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/receptkonyv/manifest.json">
+    
+    <!-- Meta tags for PWA -->
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Receptkönyv">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/receptkonyv/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="/receptkonyv/icons/icon-192.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/receptkonyv/index.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="root"></div>
+    
+    <!-- React és egyéb függőségek -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+    
+    <!-- TypeScript támogatás (egyszerűsített) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Fő alkalmazás -->
+    <script type="text/babel" src="/receptkonyv/index.tsx"></script>
+    
+    <!-- Service Worker regisztráció -->
+    <script>
+        // Service Worker regisztráció
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/receptkonyv/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker regisztrálva:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker regisztráció sikertelen:', error);
+                    });
+            });
+        }
+        
+        // PWA telepítés event handler
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('PWA telepítés elérhető');
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Telepítés gomb megjelenítése (ha van)
+            const installButton = document.getElementById('install-button');
+            if (installButton) {
+                installButton.style.display = 'block';
+                installButton.addEventListener('click', () => {
+                    installButton.style.display = 'none';
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('Felhasználó elfogadta a telepítést');
+                        } else {
+                            console.log('Felhasználó elutasította a telepítést');
+                        }
+                        deferredPrompt = null;
+                    });
+                });
+            }
+        });
+        
+        // PWA telepítés után
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('PWA sikeresen telepítve');
+        });
+    </script>
+</body>
+</html>
